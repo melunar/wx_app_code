@@ -1,0 +1,24 @@
+{
+  "name": "express_d",
+  "version": "1.0.0",
+  "description": "express application",
+  "main": "server.js",
+  "scripts": {
+    "dev": "babel-node server.js",
+    "__description": "babel-cli babel-preset-es2015 使其支持es6",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "front-end"
+  ],
+  "author": "melunar",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.0-beta4"
+  }
+}
