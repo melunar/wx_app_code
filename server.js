@@ -3,7 +3,7 @@ var a = 1;
 
 import express from "express";
 import routes from "./app/routes/index.js";
-
+var mongoose = require("mongoose");
 import bodyparser from "body-parser"; //请求解析
 
 // 引入mongo相关
@@ -28,7 +28,7 @@ app.get('/index', (req, res) => {
 app.use(bodyparser.urlencoded({extended: true}));
 
 app.use("/api/", pageApi);
-mongo.connect('mongodb://localhost:27017', (err, db) => {
+mongoose.connect("mongodb://localhost:27017/wxapp",function(err, db) {
     if(err) {
         throw new Error('Database filed  to connect!');
     } else {
@@ -39,7 +39,7 @@ mongo.connect('mongodb://localhost:27017', (err, db) => {
     app.use('/public', express.static(__dirname + '/public'));
     app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
     
-    routes(app, db.db('wxapp'));
+    routes(app, db); //.db('wxapp')
 
     // 监听3000 port
     app.listen(3000, () => {

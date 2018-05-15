@@ -3,7 +3,7 @@
 import { Router } from "express";
 var router = Router();
 
-import PageModel from '../../models/page.js';
+import Page from '../../models/page.js';
 
 var resBody = {};
 
@@ -24,10 +24,8 @@ router.get('/page', (req, res, next) => {
 // 写入一个页面
 router.post('/page/add', (req, res, next) => {
     var body = JSON.parse(Object.keys(req.body)[0]);// TODO: FIXME: req.body
-    console.log(typeof body);
     console.log('req.body start------------------')
     console.log(body)
-    // console.log(req)
     console.log('req.body end------------------')
     if(!body.config) {
         resBody.code = 500;
@@ -42,7 +40,7 @@ router.post('/page/add', (req, res, next) => {
         resBody.message = "请求参数不完整:title";
         res.json(resBody);
     } else {
-        var page = new PageModel();
+        var page = {};
         page.config = body.config;
         page.fromId = body.fromId;
         page.title = body.title;
@@ -54,7 +52,17 @@ router.post('/page/add', (req, res, next) => {
             page.id = '' + Date.now();
         }
         console.log(page);
-        Promise.all([page.save()]).then((page) => { // FIXME: page.save() 最终没有resolve??? 
+		var pageModel = new Page(page);//page, false
+		/*pageModel.$__save(page, (err, page) => {
+			if(err) { console.log(err) }
+			console.log('...');
+            console.log(page);
+            
+            resBody.message = '添加成功!';
+            resBody.data = page;
+            res.json(resBody);
+		});*/
+        pageModel.save().then((page) => { // FIXME: page.save() 最终没有resolve??? 
             console.log('...');
             console.log(page);
             
