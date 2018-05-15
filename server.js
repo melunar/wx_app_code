@@ -4,9 +4,13 @@ var a = 1;
 import express from "express";
 import routes from "./app/routes/index.js";
 
+import bodyparser from "body-parser"; //请求解析
+
 // 引入mongo相关
 import mongoDB from "mongodb";
 var mongo = mongoDB.MongoClient;
+
+import pageApi from "./app/routes/page.js";
 
 var app = express();
 
@@ -20,8 +24,10 @@ app.get('/index', (req, res) => {
     res.sendFile(process.cwd() + '/index.html');
 }); */
 
+//bodyParse设置 给request参数添加body属性 获取请求参数 response参数添加json方法相应请求
+app.use(bodyparser.urlencoded({extended: true}));
 
-
+app.use("/api/", pageApi);
 mongo.connect('mongodb://localhost:27017', (err, db) => {
     if(err) {
         throw new Error('Database filed  to connect!');
