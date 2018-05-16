@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 // 表结构
 export default new mongoose.Schema({
-    fromId: String, //(假外键id 暂时写死 string)
+    wxAppId: String, //(假外键:微信appId 暂时写死植入 string)
     id: String, //(唯一id string)
     url: String, //(生成的路由 string)
     isHomePage: {
