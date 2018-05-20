@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "c1f804ce-dd8d-4baf-9782-62fa6c3a0f3c",
+		"name": "wxapp_code_express",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取page列表",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "wxAppId",
+							"value": "0002",
+							"description": "小程序id",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/page/getByApp",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"page",
+						"getByApp"
+					]
+				},
+				"description": "微信小程序接口测试"
+			},
+			"response": []
+		},
+		{
+			"name": "添加页面",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "config",
+							"value": "[]",
+							"description": "配置jsonString",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "'page title'",
+							"description": "标题",
+							"type": "text"
+						},
+						{
+							"key": "wxAppId",
+							"value": "0002",
+							"description": "小程序id",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/page/add",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"page",
+						"add"
+					]
+				},
+				"description": "添加一个页面"
+			},
+			"response": []
+		},
+		{
+			"name": "删除页面",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "wxAppId",
+							"value": "0002",
+							"description": "小程序id(防止多程序间pageId[时间戳]重复)",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1526834972239",
+							"description": "页面id",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/page/delete",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"page",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

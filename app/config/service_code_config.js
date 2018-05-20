@@ -5,7 +5,7 @@ let SERVICE_CODE = {
     , SERVICE_USER_UNAUTHORIZED: { code: 401, message: "用户未认证" }  
     , SERVICE_INVALID_PARAMETER: { code: 400, message: "请求参数错误" }  
     , SERVICE_SERVICE_ERROR: { code: 500, message: "服务异常" }  
-    , SERVICE_DBDAO_ERROR: { code: 5001, message: "数据库异常" } 
+    , SERVICE_DBDAO_ERROR: { code: 5001, message: "数据库操作异常" } 
 /*     
     , SERVICE_SPEAKER_NOT_EXISTED: { code: 108, message: "数据库中没有要查询的speaker" }  
     , SERVICE_SPEAKER_HAVE_NOT_VP: { code: 109, message: "speaker中没有对应的voiceprint" }  
