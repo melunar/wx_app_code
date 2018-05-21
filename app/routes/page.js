@@ -1,4 +1,11 @@
-// page 相关api
+/*
+ * @Author: hooy
+ * @Date: 2018-05-22 00:26:41
+ * @LastEditors: hooy
+ * @LastEditTime: 2018-05-22 00:28:09
+ * @Description: 页面相关接口
+ * @Email: haoyong94520@outlook.com
+ */
 
 import { Router } from "express";
 var router = Router();
@@ -22,11 +29,12 @@ router.get('/page', (req, res, next) => {
     res.send("nihao 主页");
 });
 
+
 let getReqBody = (req) => {
     let body = req.body;
-    console.log('req.body start------------------')
+    console.log('req.body start->>>>>>>>>>>>')
     console.log(body)
-    console.log('req.body end------------------')
+    console.log('<<<<<<<<<<<<<<-req.body end')
     return body;
 }
 
@@ -73,7 +81,49 @@ router.post('/page/add', (req, res, next) => {
         });
     }
 });
+// 设为主页
+router.post('/page/set/homepage', (req, res, next) => {
+    let body = getReqBody(req);
+    if(!body.wxAppId || !body.id) {
+        Object.assign(resBody, SERVICE_CODE.SERVICE_INVALID_PARAMETER); // 参数错误
+        res.json(resBody);
+    } else {
+        let param = { wxAppId: body.wxAppId, id: body.id };
+        Page.update({wxAppId: body.wxAppId}, {isHomePage: false}).then(() => {
+            // 先把所有页面置为非首页,再把操作对象置为主页
+            Page.findOneAndUpdate(param, {isHomePage: true}).then((newPage) => {
+                Object.assign(resBody, SERVICE_CODE.SERVICE_SUCCESS); // OK
+                newPage.isHomePage = true; // 更新实例
+                resBody.data = newPage;
+                res.json(resBody);
+            }).catch(err => {
+                Object.assign(resBody, SERVICE_CODE.SERVICE_DBDAO_ERROR); // 数据库操作失败
+                res.json(resBody);
+            });
+        });
+    }
+});
 
+// 更新一个页面
+router.post('/page/update', (req, res, next) => {
+    let body = getReqBody(req);
+    if(!body.wxAppId || !body.id) {
+        Object.assign(resBody, SERVICE_CODE.SERVICE_INVALID_PARAMETER); // 参数错误
+        res.json(resBody);
+    } else { // 修改
+        let param = { wxAppId: body.wxAppId, id: body.id };
+        Page.findOneAndUpdate(param, body).then((newPage) => {
+            Object.assign(resBody, SERVICE_CODE.SERVICE_SUCCESS); // OK
+            resBody.data = newPage;
+            res.json(resBody);
+        }).catch(err => {
+            Object.assign(resBody, SERVICE_CODE.SERVICE_DBDAO_ERROR); // 数据库操作失败
+            res.json(resBody);
+        });
+    }
+});
+
+// 删除一个页面
 router.post('/page/delete', (req, res, next) => {
     let body = getReqBody(req);
     if(!body.wxAppId || !body.id) {

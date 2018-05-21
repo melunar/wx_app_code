@@ -141,6 +141,132 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:3000/api/page",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"page"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新页面",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "wxAppId",
+							"value": "0001",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1526493289113",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "新的页面标题",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "metas",
+							"value": "[{},{}]",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/page/update",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"page",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设置主页",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "wxAppId",
+							"value": "0002",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1526832850981",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/page/set/homepage",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"page",
+						"set",
+						"homepage"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,6 +1,14 @@
-import mongoose from 'mongoose';
+/*
+ * @Author: hooy
+ * @Date: 2018-05-21 23:16:52
+ * @LastEditors: hooy
+ * @LastEditTime: 2018-05-21 23:17:15
+ * @Description: page实例Schema定义
+ * @Email: haoyong94520@outlook.com
+ */
 
-// 表结构
+import mongoose from 'mongoose';  
+
 export default new mongoose.Schema({
     wxAppId: String, //(假外键:微信appId 暂时写死植入 string)
     id: String, //(唯一id string)
